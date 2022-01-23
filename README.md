@@ -1,6 +1,5 @@
 # seq2seq-models
-Some different seq2seq models
-WIP!
+Some different seq2seq models, based on the Spell-Checker project.
 
 # One hot encoding
 Often one hot encoding is used in these models. Especially with small sets of symbols, like characters.
