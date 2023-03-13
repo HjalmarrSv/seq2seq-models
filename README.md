@@ -17,4 +17,4 @@ Mixed precision may not work for Tensorflow less than 2.7. It seems LSTM is not 
 Masking (layer or not) can be used to avoid training on empty positions. See: seq2seqTF2.x_embedding, seq2seqTF2.x_set_weights.ipynb.
 
 # Training loop
-A simple loop to get through large amounts of data. All data still in RAM, but feed in smaller pieces to GPU. See: seq2seqTF2.x_training_loop.ipynb
+A simple loop to get through large amounts of data. All data still in RAM, but feed in smaller pieces to GPU. In TF 2.11 (and possibly earlier) you hace to clear gpu memory after every run (model.fit), otherwise every run will accumulate in gpu memory, resulting in oom. Using keras.backend.clear_session() works, but you have to call it after every run, or it will not work. All these clearing the weights out of the gpu adds up to a lot of time. Better not loop the training in this way, by calling model.fit multiple times. See: seq2seqTF2.x_training_loop.ipynb
